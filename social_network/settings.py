@@ -65,6 +65,11 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'crispy_forms',
+    "crispy_tailwind",
+    "users",
+
+    
 ]
 
 
@@ -98,8 +103,32 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'social_network.wsgi.application'
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+SITE_ID = 1
 
+CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
+CRISPY_TEMPLATE_PACK = "tailwind"
+
+# ================ ALLAUTH ==================== #
+ACCOUNT_ALLOW_REGISTRATION = env.bool("DJANGO_ACCOUNT_ALLOW_REGISTRATION", True)
+ACCOUNT_AUTHENTICATION_METHOD = "email"  #determinamos que se va a loguear con su email
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_UNIQUE = True
+AUTH_USER_MODEL="users.User" #con esto especificamos que el pertil se extiende de abstrac users
+ACCOUNT_LOGOUT_ON_GET = True
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 3 #cantidad de intentos errones al loguearte
+ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT =300 # se bloquea por 300 segundos la posibilidad de loguearte
+LOGIN_REDIRECT_URL = "/" #cuando nos logueamos nos lleva a la vista de inicio del perfil
+LOGIN_URL = "account_login"
+
+
+
+"""cuando creamos una cuenta nos va a llegar un aviso por oconsola"""
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -121,15 +150,6 @@ PASSWORD_HASHERS = [
     "django.contrib.auth.hashers.BCryptSHA256PasswordHasher",
 ]
 
-AUTHENTICATION_BACKENDS = [
-
-    # Needed to login by username in Django admin, regardless of `allauth`
-    'django.contrib.auth.backends.ModelBackend',
-
-    # `allauth` specific authentication methods, such as login by e-mail
-    'allauth.account.auth_backends.AuthenticationBackend',
-]
-SITE_ID = 1
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -183,7 +203,8 @@ INTERNAL_IPS = [
 
 NPM_BIN_PATH = r"D:\softwares\React\npm.cmd"
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
 
 if not DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block navbar %}
+{% include 'components/navbar.html' %}
+{% endblock%}
+{% load i18n %}
+
+{% block head_title %}{% trans "Verifica tu email" %}{% endblock %}
+
+{% block content %}
+    <br>
+    <h1>{% trans "Verifica tu dirección de correo electrónico." %}</h1>
+    <br>
+    <p>{% blocktrans %}Te hemos enviado un correo electrónico para la verificación. Sigue el enlace proporcionado para finalizar el proceso de registro. Si no ves el correo electrónico de verificación en tu bandeja de entrada principal, revisa tu carpeta de spam. Por favor, contáctanos si no recibes el correo electrónico de verificación en unos pocos minutos.
+        
+    <strong>"Aclaracion llega un aviso en consola de confirmación"</strong>{% endblocktrans %}</p>
+
+{% endblock %}

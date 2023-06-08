@@ -178,6 +178,22 @@ creamos un superusuario para acceder al panel de administrador de django
 
 
 ###########################################################################################################################
+creamos el login y el crear cuenta utilizando el template que nos brinda la documentacion oficial de allauth y con django-crispy web oficial https://django-crispy-forms.readthedocs.io/en/latest/install.html
 
+ django-crispy es una libreria que nos ofrece formularios predeterminados 
+ instalamos crispy-tailwind para a esas librerias darle estilos con tailwind
+
+ se creo templates para mostrar las confirmaciones de email al crear la cuenta
 
 ###########################################################################################################################
+
+creamos la app users para ahi guardar todos las cuentas de los usuarios
+y en vistas extendemos de django.contrib.auth.models la clase AbstractUser que es donde django nos da todos los elementos necesarios para crear un usuario base
+despues usamos django.conf para poder configurar la autenticacion de los usuarios
+despues usamos PIL para el procesamiento de imagenes
+
+creamos la carpeta media/img y ahi adentro colocamos la imagen de perfil y banner por defecto que se crea cuando creamos un nuevo usuario
+
+se creo los templates para el perfil del usuario
+
+######################################################################################################
