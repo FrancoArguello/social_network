@@ -195,5 +195,6 @@ despues usamos PIL para el procesamiento de imagenes
 creamos la carpeta media/img y ahi adentro colocamos la imagen de perfil y banner por defecto que se crea cuando creamos un nuevo usuario
 
 se creo los templates para el perfil del usuario
+se creo el template para editar el perfil de usuario y se edito el views.py para agregar la logica para poder modificar los datos del usuario
 
 ######################################################################################################

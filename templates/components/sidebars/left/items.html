@@ -3,7 +3,13 @@
 <ul class="p-4">
   <li>
     <a
-      href={% url 'users:profile' user.username %}
+
+    {% if user.is_authenticated %}
+    href={% url 'users:profile' user.username %}
+    {% else %}
+    href="#"
+    {% endif %}
+      
       class="flex items-center space-x-2 p-2 hover:bg-gray-200 rounded-lg transition-all dark:text-dark-txt dark:hover:bg-dark-third"
     >
       <img

@@ -1,7 +1,9 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import TemplateView, View
 from django.contrib.auth import get_user_model
 from users.models import Profile
+from django.contrib.auth.decorators import login_required
+from users.forms import EditProfileForm
 
 
 User = get_user_model()
@@ -15,3 +17,37 @@ class UserProfileView(View):
             'profile' : profile                    
         }
         return render(request, 'users/detail.html', context)
+
+
+@login_required
+def EditProfile(request):
+    user =request.user.id
+    profile = Profile.objects.get(user__id=user)
+    user_basic_info = User.objects.get(id=user)
+    
+    if request.method == 'POST':
+        form = EditProfileForm(request.POST, request.FILES, instance =profile)
+        if form.is_valid():
+            user_basic_info.first_name = form.cleaned_data.get('first_name')
+            user_basic_info.first_name = form.cleaned_data.get('last_name')
+            
+            profile.picture =form.cleaned_data.get('picture')
+            profile.banner =form.cleaned_data.get('banner')
+            profile.location =form.cleaned_data.get('location')
+            profile.url =form.cleaned_data.get('url')
+            profile.biography =form.cleaned_data.get('biography')
+            profile.studies =form.cleaned_data.get('studies')
+            profile.phone =form.cleaned_data.get('phone')
+            profile.occupation =form.cleaned_data.get('occupation')
+            
+            profile.save()
+            user_basic_info.save()
+            return redirect('users:profile', username =request.user.username)
+    else:
+        form=EditProfileForm(instance=profile)
+
+    context={
+        'form':form,
+    }
+
+    return render(request, 'users/editProfile.html', context)

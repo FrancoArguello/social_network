@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% load tailwind_filters %}
+
+{% block title %} Editar Perfil{% endblock title %}
+
+{% block navbar %}
+{% include 'components/navbar.html' %}
+{% endblock navbar %}
+
+{% block left_sidebar %}
+{% comment %} {% include 'components/sidebars/left/users/sidebar.html' %} {% endcomment %}
+{% endblock left_sidebar %}
+
+{% block content %}
+<form class="form-horizontal dark:text-dark-txt" method="post"  enctype="multipart/form-data"> 
+{% csrf_token %}
+<div class="mt-1 sm:mt-0 sm:col-span-2">
+    <label for="photo" class="block text-sm font-medium dark:text-dark-txt text-gray-700">
+        Banner
+    </label>
+        <img class="h-28 w-full bg-cover" src="{{user.profile.banner.url}}" alt="{{profile.user.username}} Banner Picture">
+
+        <div class="max-w-lg flex justify-center px-6 pt-5 pb-6 border-2 dark:border-dark-third border-gray-300 border-dashed rounded-md">
+            {{form.banner}}
+            <div class="space-y-1 text-center">
+            <div class="flex text-sm text-gray-600">
+                
+            </div>
+            </div>
+        </div>
+
+        <div class="mt-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-center sm:border-t dark:border-dark-third border-gray-200 sm:pt-5">
+            <label for="photo" class="block text-sm font-medium dark:text-dark-txt text-gray-700">
+              Foto de perfil
+            </label>
+            <div class="mt-1 sm:mt-0 sm:col-span-2">
+              <div class="flex items-center">
+                <span class="mr-4 h-18 w-18 rounded-full overflow-hidden dark:bg-dark-third bg-gray-100">
+                  <img src="{{user.profile.picture.url}}" alt="">
+                </span>
+                <div class="ml-4">
+                  {{form.picture}}
+                </div>
+              </div>
+            </div>
+          </div>
+
+        <div class="mt-4 ">
+        <label for="first_name" class="block text-sm font-medium dark:text-dark-txt text-gray-700">
+            Nombre
+        </label>
+        {{form.first_name}}
+        </div>
+        <label for="last_name" class="block text-sm font-medium dark:text-dark-txt text-gray-700">
+            Apellido
+        </label>
+        {{form.last_name}}
+
+        <label for="biography" class="block text-sm font-medium dark:text-dark-txt text-gray-700">
+            Biografia
+        </label>
+        {{form.biography}}
+
+        <label for="location" class="block text-sm font-medium dark:text-dark-txt text-gray-700">
+        Ubicación: Pais, Ciudad
+        </label>
+        {{form.location}}
+
+        <label for="occupation" class="block text-sm font-medium dark:text-dark-txt text-gray-700">
+        Trabaja en
+        </label>
+        {{form.occupation}}
+
+        <label for="url" class="block text-sm font-medium dark:text-dark-txt text-gray-700">
+        Sitio web
+        </label>
+        {{form.url}}
+
+        <label for="studies" class="block text-sm font-medium dark:text-dark-txt text-gray-700">
+            Sitio web
+            </label>
+            {{form.studies}}
+
+
+        <label for="phone" class="block text-sm font-medium dark:text-dark-txt text-gray-700">
+            Telefono
+        </label>
+        {{form.phone}}
+        </div>
+
+         <div class="control-group">
+            <div class="controls mt-4">
+            <a href="{% url 'users:profile' username=user.username %}" class="float-right inline-flex justify-center px-4 py-2 border dark:bg-dark-main dark:border-dark-third dark:hover:bg-dark-third dark:text-dark-txt border-blue-500 shadow-sm text-md font-bold rounded-full text-blue-500 dark:bg-dark-second bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 dark:focus:ring-dark-second focus:ring-blue-500">
+            Volver al perfil </a>
+            
+            <button type="submit" class="float-right inline-flex justify-center px-4 py-2 border dark:bg-dark-main dark:border-dark-third dark:hover:bg-dark-third dark:text-dark-txt border-blue-500 shadow-sm text-md font-bold rounded-full text-blue-500 dark:bg-dark-second bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 dark:focus:ring-dark-second focus:ring-blue-500 ">
+            Guadar</button>
+            </div>
+        </div>
+
+    </div>
+</form>
+{% endblock content %}
