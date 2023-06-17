@@ -1,3 +1,29 @@
-from django.shortcuts import render
+from .models import Post
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.views.generic.edit import UpdateView, DeleteView
+from django.urls.base import reverse_lazy
 
-# Create your views here.
+
+
+class PostEdit(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Post
+    fields = ['body']
+    template_name = 'pages/posts/edit.html'
+    success_url = reverse_lazy('home')
+
+    
+    def test_func(self):
+        post = self.get_object()
+        return self.request.user == post.author
+
+
+class PostDelete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Post
+    fields = ['body']
+    template_name = 'pages/posts/delete.html'
+    success_url = reverse_lazy('home')
+
+    
+    def test_func(self):
+        post = self.get_object()
+        return self.request.user == post.author

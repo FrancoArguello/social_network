@@ -198,3 +198,17 @@ se creo los templates para el perfil del usuario
 se creo el template para editar el perfil de usuario y se edito el views.py para agregar la logica para poder modificar los datos del usuario
 
 ######################################################################################################
+
+en la app social en el archivo models.py creamos las clases para poder crear los posteos y comentarios 
+y en el archivo forms.py creamos el formulario para crear un nuevo post
+
+se modifico el archivo index.html de la carpeta pages
+hicimos las migraciones de social y user
+
+se creo la carpeta posts en la ruta templates/pages
+con los archivos delete.html y edit.html que van a ser los template para cuando querramos editar o borrar una publicación
+
+en el archivo views.py se creo la logica para editar y borrar las publicaciones utilizando UpdateView, DeleteView
+
+##################################################################################################
+

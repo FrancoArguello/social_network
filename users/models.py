@@ -47,10 +47,7 @@ class Profile(models.Model):
     url = models.CharField(max_length=100, null=True, blank=True)
     birthday = models.DateField(null=True, blank=True)
     biography = models.TextField(max_length=150, null=True, blank=True)
-
-    # esta funcion nos va a permitir que los usuarios se logueen con su nombre ususario
-    def __str__(self):
-        return self.user.username
+    
     
 def create_user_profile(sender, instance, created, **kwargs):
     if created:

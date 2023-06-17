@@ -24,10 +24,12 @@ from .views import HomeView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("", HomeView.as_view(), name="home"),
     path("__reload__/", include("django_browser_reload.urls")),
     path('accounts/', include('allauth.urls')),
     path('users/', include('users.urls', namespace= "users")),
-    path("", HomeView.as_view(), name="home"),
+    path('social/', include('social.urls', namespace= "social")),
+    
     
 ]
 

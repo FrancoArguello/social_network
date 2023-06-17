@@ -29,8 +29,8 @@ def EditProfile(request):
         form = EditProfileForm(request.POST, request.FILES, instance =profile)
         if form.is_valid():
             user_basic_info.first_name = form.cleaned_data.get('first_name')
-            user_basic_info.first_name = form.cleaned_data.get('last_name')
-            
+            user_basic_info.last_name = form.cleaned_data.get('last_name')
+                     
             profile.picture =form.cleaned_data.get('picture')
             profile.banner =form.cleaned_data.get('banner')
             profile.location =form.cleaned_data.get('location')
