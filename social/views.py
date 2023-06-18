@@ -1,7 +1,12 @@
-from .models import Post
+from django.http import HttpResponseRedirect
+from django.shortcuts import redirect, render
+from django.views.generic.base import View
+from requests import request
+from .models import Post, Comment
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic.edit import UpdateView, DeleteView
 from django.urls.base import reverse_lazy
+
 
 
 

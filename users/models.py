@@ -47,6 +47,7 @@ class Profile(models.Model):
     url = models.CharField(max_length=100, null=True, blank=True)
     birthday = models.DateField(null=True, blank=True)
     biography = models.TextField(max_length=150, null=True, blank=True)
+    followers = models.ManyToManyField(User, blank=True, related_name='followers')
     
     
 def create_user_profile(sender, instance, created, **kwargs):
